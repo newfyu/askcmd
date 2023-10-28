@@ -4,6 +4,8 @@
 
 `askcmd` 是一个命令行工具，帮助用户根据自然语言生成或解释命令行命令。目前使用 OpenAI 的 `gpt-3.5-turbo` 模型来生成或解释用户的查询。
 
+![askcmd](https://github.com/newfyu/askcmd/assets/43229758/fc2ae91b-10bf-4ada-8b6c-58598504f8af)
+
 ## 安装
 
 从 GitHub 克隆仓库：
