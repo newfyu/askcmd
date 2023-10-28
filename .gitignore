@@ -1,3 +1,10 @@
 
 .ipynb_checkpoints
 未命名.ipynb
+
+
+askcmd.egg-info
+build/lib/askcmd
+dist
+.DS_Store
+askcmd/config.yaml

@@ -3,8 +3,10 @@ import yaml
 import os
 import openai
 
+
 # 获得执行本脚本所在的目录
 pwd = os.path.dirname(os.path.abspath(__file__))
+user_home = os.path.expanduser("~")
 
 gen_cmd_function = {
   "name": "generate_commamd",
@@ -26,8 +28,21 @@ gen_cmd_function = {
   }
 }
 
+def make_config():
+    config_path = os.path.join(user_home, ".askcmd")
+    if not os.path.exists(config_path):
+        os.makedirs(config_path)
+    config_file = os.path.join(config_path, "config.yaml")
+    if not os.path.exists(config_file):
+        with open(config_file, "w") as f:
+            f.write("key: \n")
+            f.write("model: gpt-3.5-turbo\n")
+            f.write("api_base: \n")
+            f.write("proxy: \n")
+
+
 def set_proxy():
-    with open("config.yaml", "r", encoding="utf-8") as f:
+    with open(os.path.join(user_home, ".askcmd", "config.yaml")) as f:
         opt = yaml.safe_load(f)
     proxy_address = opt.get("proxy", None)
     if proxy_address:
@@ -50,8 +65,8 @@ def parse_args():
     return args
 
 def read_write_config(key=None, model=None, api_base=None, proxy=None):
-    with open('config.yaml', 'r+') as file:
-        config = yaml.safe_load(file)
+    with open(os.path.join(user_home, ".askcmd", "config.yaml"), 'r+') as f:
+        config = yaml.safe_load(f)
         if key:
             config['key'] = key
             print(f"Set key to {key}")
@@ -76,8 +91,8 @@ def read_write_config(key=None, model=None, api_base=None, proxy=None):
             else:
                 config['proxy'] = proxy
                 print(f"Set proxy to {proxy}")
-        file.seek(0)
-        yaml.dump(config, file)
+        f.seek(0)
+        yaml.dump(config, f)
     return config
 
 def get_cmd(input_str):
@@ -110,6 +125,7 @@ def execute_command(cmd):
 
 def main():
     args = parse_args()
+    make_config()
     config = read_write_config(args.key, args.model, args.api_base, args.proxy)
     openai.api_key = config['key']
     if config['api_base']:
