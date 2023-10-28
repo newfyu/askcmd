@@ -8,8 +8,12 @@
 
 ## 安装
 
-从 GitHub 克隆仓库：
+### pip安装
+```
+pip install askcmd
+```
 
+### 从源码安装：
 ```bash
 git clone https://github.com/newfyu/askcmd.git
 cd askcmd
