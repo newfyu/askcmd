@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="askcmd",
-    version="0.1.1",
+    version="0.1.2",
     author='lhan',
     author_email='lhan12345@hotmail.com',
     description='A command line tool to generate any commands from natural language',
