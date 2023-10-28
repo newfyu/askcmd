@@ -132,6 +132,8 @@ def main():
         openai.api_base = config['api_base']
     if config['key']:
         input_str = input('Ask any command: ')
+        if input_str == "exit" or input_str == "quit" or input_str == "q":
+            exit()
         get_cmd(input_str)
         
 
