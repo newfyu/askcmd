@@ -9,8 +9,8 @@
 从 GitHub 克隆仓库：
 
 ```bash
-git clone <仓库地址>
-cd <仓库目录>
+git clone https://github.com/newfyu/askcmd.git
+cd askcmd
 python setup.py install
 ```
 
