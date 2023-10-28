@@ -8,9 +8,8 @@ setup(
     description='A command line tool to generate any commands from natural language',
     packages=find_packages(),
     include_package_data=True,
-    package_data={
-        'askcmd': ['config.yaml'],
-    },
+    long_description=open('README.md').read(),
+    long_description_content_type="text/markdown",
     entry_points={
         'console_scripts': [
             'askcmd = askcmd.__main__:main',
