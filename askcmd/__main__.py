@@ -94,6 +94,7 @@ def read_write_config(key=None, model=None, api_base=None, proxy=None):
                 print(f"Set proxy to {proxy}")
         f.seek(0)
         yaml.dump(config, f)
+        f.truncate()
     return config
 
 def get_cmd(input_str):
