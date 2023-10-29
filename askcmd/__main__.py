@@ -57,6 +57,7 @@ def del_proxy():
 
 def parse_args():
     parser = argparse.ArgumentParser()
+    parser.add_argument('input_str', nargs='?', default=None, help='输入要生成命令的请求')
     parser.add_argument('--key', help='设置openai的key')
     parser.add_argument('--model', help='设置模型, 默认为gpt-3.5-turbo')
     parser.add_argument('--api-base', help='设置反向代理地址, 设置为none可以删除反向代理')
@@ -131,7 +132,10 @@ def main():
     if config['api_base']:
         openai.api_base = config['api_base']
     if config['key']:
-        input_str = input('Ask any command: ')
+        if not args.input_str:
+            input_str = input('Ask any command: ')
+        else:
+            input_str = args.input_str
         if input_str == "exit" or input_str == "quit" or input_str == "q":
             exit()
         get_cmd(input_str)
